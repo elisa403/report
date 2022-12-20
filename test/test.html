@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>读取 CSV（Comma-Separated Values）文件</title>
+    </head>
+    <body>
+        <!-- https://www.iana.org/assignments/media-types/media-types.xhtml -->
+        <!-- https://www.iana.org/assignments/media-types/text/csv -->
+        <input type="file" accept="text/csv" />
+        
+        <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/progress -->
+        <progress value="0"></progress>
+
+        <script type="text/javascript">
+            window.onload = (event) => {
+                // console.log(event);
+                main();
+            }
+            
+            function main() {
+                var inputFile = document.querySelector("input[type='file']");
+                
+                
+                inputFile.onchange = (event) => {
+                    // console.log(event);
+                    var file = inputFile.files[0];
+                    console.log("file",file)
+                    
+                    var fileReader = new FileReader();
+                    fileReader.readAsText(file, "utf-8");
+                    
+                    // 显示进度
+                    var progress = document.querySelector("progress");
+                    progress.max = file.size;
+                    progress.value = 0;
+                    fileReader.onprogress = (event) => {
+                        // console.log(event);
+                        progress.value = event.loaded;
+                    }
+                    
+                    fileReader.onload = (event) => {
+                        console.log(event, fileReader);
+                        var result = fileReader.result;
+                        console.log(result); // 读取的结果
+                        var vo = result.split("\r\n");
+                        var kor = [];
+                        var chi = [];
+                        var word = [];
+                        console.log(vo)
+                        for(var i = 1;i<vo.length;i++){
+                            vo[i] = vo[i].split(",")
+                            kor.push(vo[i][0])
+                            word.push(vo[i][1])
+                            chi.push(vo[i][2])
+                        }
+                        console.log(kor)
+                        console.log(word)
+                        console.log(chi)
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
+

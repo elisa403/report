@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>The Element Object</h1>
+<h2>The insertBefore() Method</h2>
+
+<ul id="myList1">
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
+<ul id="myList2">
+  <li>Water</li>
+  <li>Milk</li>
+  <li>Juice</li>
+</ul>
+
+<p>Click the button to move items from one list to another:</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+const node = document.createElement("div");
+node.innerHTML = "aaa";
+  console.log(node)
+  const list = document.getElementById("myList1");
+  console.log(list)
+  list.insertBefore(node, list.children[0]);
+}
+</script>
+
+</body>
+</html>
+

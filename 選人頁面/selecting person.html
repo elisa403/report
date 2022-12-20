@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Selecting person</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body{
+            background-image:url("stage.png");
+            background-size: 100% ;
+        }
+        /* .bg{
+            opacity: 0.5;
+            /* width: 100%;
+            height: 100%; 
+            background-size: cover;
+        } */
+        img{
+            width: 135px;
+            height: 500px;
+            z-index: -1;
+            /* box-shadow: 0 0 3px 1px rgba(51, 51, 51, 0.5); */
+            transition: 0.3s;
+
+        
+        }
+        /* img:hover{
+            width: 200px;
+            height: 700px;
+            /* border: 1px solid white; */
+            /* z-index: 100; */
+            /* position: relative; 
+        } */
+        .box{
+            position:relative;
+            float: left;
+            width: 135px;
+            height: 400px;
+            margin: 20px;
+            margin-top: 120px;
+        }
+        /* .people{
+            top:0;
+            left:0;
+            position: absolute;
+            transition: all 0.5s ease-in-out;
+            -webkit-transition: all 0.2s ease-in-out;
+            
+        } */
+        img:hover{
+            z-index: 100;
+            width: 200px;
+            height: 700px;
+        }
+    
+    </style>
+
+    <script type="text/javascript">
+        let namearr=["rm","suga","v","jungkook","jhope","jimin","jin"];
+        localStorage.setItem("節日",[1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("人物",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("地點",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("方位",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("時間",[1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("狀態",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("動作",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("副詞連接詞",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("物品",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        function start(){
+            document.getElementById("1").addEventListener("click",function(){savebias(namearr[0],"0");},false);
+            document.getElementById("2").addEventListener("click",function(){savebias(namearr[1],"1");},false);
+            document.getElementById("3").addEventListener("click",function(){savebias(namearr[2]);},false);
+            document.getElementById("4").addEventListener("click",function(){savebias(namearr[3]);},false);
+            document.getElementById("5").addEventListener("click",function(){savebias(namearr[4]);},false);
+            document.getElementById("6").addEventListener("click",function(){savebias(namearr[5]);},false);
+            document.getElementById("7").addEventListener("click",function(){savebias(namearr[6]);},false);
+        }
+        function savebias(name,num){
+            let obj=new Object();
+            console.log(obj);
+            obj.name=name;
+            obj.num=num;
+            localStorage.setItem("bias", JSON.stringify(obj));
+            //加入自動跳到主頁的功能
+        }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+
+<body>
+    <!-- <img class="bg" src="stage.png"> -->
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6806.PNG" id="1">
+        </div>
+        
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6807.PNG" id="2">
+        </div>   
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6809.PNG" id="3">
+        </div>   
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6805.PNG" id="4">
+        </div>   
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6810.PNG" id="5">
+        </div>   
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6811.PNG" id="6">
+        </div>   
+    </div>
+    <div class="box">
+        <div class="people">
+            <img src="IMG_6808.PNG" id="7">
+        </div>   
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- <div id="msg"></div> -->
+</body>
+
+</html>
