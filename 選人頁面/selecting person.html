@@ -53,28 +53,33 @@
             width: 200px;
             height: 700px;
         }
-    
+        
+        img{
+            margin-left: 60%;
+        }
     </style>
 
     <script type="text/javascript">
         let namearr=["rm","suga","v","jungkook","jhope","jimin","jin"];
         localStorage.setItem("節日",[1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-        localStorage.setItem("人物",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-        localStorage.setItem("地點",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("人物",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("地點",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         localStorage.setItem("方位",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         localStorage.setItem("時間",[1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         localStorage.setItem("狀態",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-        localStorage.setItem("動作",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("動作",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         localStorage.setItem("副詞連接詞",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-        localStorage.setItem("物品",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("物品",[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        localStorage.setItem("score_total",0);
+        localStorage.setItem("score_spend",0);
         function start(){
             document.getElementById("1").addEventListener("click",function(){savebias(namearr[0],"0");},false);
             document.getElementById("2").addEventListener("click",function(){savebias(namearr[1],"1");},false);
-            document.getElementById("3").addEventListener("click",function(){savebias(namearr[2]);},false);
-            document.getElementById("4").addEventListener("click",function(){savebias(namearr[3]);},false);
-            document.getElementById("5").addEventListener("click",function(){savebias(namearr[4]);},false);
-            document.getElementById("6").addEventListener("click",function(){savebias(namearr[5]);},false);
-            document.getElementById("7").addEventListener("click",function(){savebias(namearr[6]);},false);
+            document.getElementById("3").addEventListener("click",function(){savebias(namearr[2],"2");},false);
+            document.getElementById("4").addEventListener("click",function(){savebias(namearr[3],"3");},false);
+            document.getElementById("5").addEventListener("click",function(){savebias(namearr[4],"4");},false);
+            document.getElementById("6").addEventListener("click",function(){savebias(namearr[5],"5");},false);
+            document.getElementById("7").addEventListener("click",function(){savebias(namearr[6],"6");},false);
         }
         function savebias(name,num){
             let obj=new Object();
@@ -90,42 +95,58 @@
 
 <body>
     <!-- <img class="bg" src="stage.png"> -->
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6806.PNG" id="1">
-        </div>
-        
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6807.PNG" id="2">
-        </div>   
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6809.PNG" id="3">
-        </div>   
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6805.PNG" id="4">
-        </div>   
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6810.PNG" id="5">
-        </div>   
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6811.PNG" id="6">
-        </div>   
-    </div>
-    <div class="box">
-        <div class="people">
-            <img src="IMG_6808.PNG" id="7">
-        </div>   
-    </div>
+    <p id="pp">
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6806.PNG" id="1">
+                </div>
+                
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6807.PNG" id="2">
+                </div>   
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6809.PNG" id="3">
+                </div>   
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6805.PNG" id="4">
+                </div>   
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6810.PNG" id="5">
+                </div>   
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6811.PNG" id="6">
+                </div>   
+            </div>
+        </a>
+        <a href="../房間/room.html">
+            <div class="box">
+                <div class="people">
+                    <img src="IMG_6808.PNG" id="7">
+                </div>   
+            </div>
+        </a>
+    </p>
 
     
     

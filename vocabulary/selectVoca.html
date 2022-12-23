@@ -1,0 +1,67 @@
+<!-- 
+遊戲規則：
+1.每背完一個單字獲得1積分，背錯不扣積分
+2.隨機抽取未背單字來考
+3.每次都有一次提示機會（以詞性提示）
+4.若中間背錯單字則結束遊戲
+ -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <!-- background-image: url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000"); -->
+         <title>Vocabulary</title>
+         <meta charset="utf-8">
+         <style>
+            @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+            body{
+               font-family:  sans-serif,Arial, Helvetica, sans-serif;
+               background-color: lightpink;
+                background-image: url("cloud.jpg");
+                background-size: 110%;
+                 color: white;
+             }
+             #selectva{
+                margin-left: 27%;
+                margin-top: 20%;
+             }
+             span{
+                padding: 6px;
+                border: 1px white solid;
+                background-color:#be7bfd;
+                border-radius:8px;
+                font-size: 150%;
+             }
+             a{
+                text-decoration: none;
+                color: white;
+                font-weight: bolder;
+             }
+             span:hover{
+                background-color:pink;
+            }
+            .back{
+                margin-left:10px;
+            }
+         </style>
+         <script>
+            function doClick(str){
+                localStorage.setItem("now",str);
+            }
+         </script>
+     </head>
+     <body>
+        <br>
+        <span class="back"><a href="../房間/room.html">返回房間</a></span>
+         <p id="selectva">
+            <span class="select1" onclick="doClick('人物')"><a href="Vocabulary.html">人物</a></span>
+            <span class="select1" onclick="doClick('地點')"><a href="Vocabulary.html">地點</a></span>
+            <span class="select1" onclick="doClick('節日')"><a href="Vocabulary.html">節日</a></span>
+            <span class="select1" onclick="doClick('方位')"><a href="Vocabulary.html">方位</a></span>
+            <span class="select1" onclick="doClick('時間')"><a href="Vocabulary.html">時間</a></span>
+            <span class="select1" onclick="doClick('狀態')"><a href="Vocabulary.html">狀態</a></span>
+            <span class="select1" onclick="doClick('動作')"><a href="Vocabulary.html">動作</a></span>
+            <span class="select1" onclick="doClick('副詞連接詞')"><a href="Vocabulary.html">副詞連接詞</a></span>
+            <span class="select1" onclick="doClick('物品')"><a href="Vocabulary.html">物品</a></span>
+         </p>
+     </body>
+ </html>
