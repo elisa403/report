@@ -1,0 +1,107 @@
+<!-- 
+遊戲規則：
+1.每背完一個單字獲得1積分，背錯不扣積分
+2.隨機抽取未背單字來考
+3.每次都有一次提示機會（以詞性提示）
+4.若中間背錯單字則結束遊戲
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- background-image: url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000"); -->
+        <title>Vocabulary</title>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="Vocabulary.js"></script>
+        <style>
+            @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+            body{
+                font-family:  sans-serif,Arial, Helvetica, sans-serif;
+                background-color: lightpink;
+                background-image: url("cloud.jpg");
+                background-size: 200%;
+                background-position: 0px 0px;
+                color: white;
+            }
+            table{
+                display: inline;
+                width: 50%;
+                border-collapse: collapse;  
+                margin-left: 11%;
+                color: #be7bfd;
+            }
+            tbody{
+                text-align: center;
+            }
+            
+            th{
+                border: 4px solid #B094C4;
+                margin: 5px;
+                height: 20px;
+                background-color:white;
+                width: 40%;
+                width: 150px;
+                
+            }
+            caption{
+                font-size: 20px;
+            }
+            td{
+                border: 4px solid #B094C4;
+                height: 20px;
+                background-color:white;
+            }
+            caption{
+                font-weight: bold;
+            }
+            #play{
+                margin-left: 40%;
+                padding: 6px;
+                width: 10.15%;
+                border: 1px white solid;
+                background-color:#be7bfd;
+                border-radius:8px;
+                font-size: 150%;
+                font-weight: bold;
+            }
+            img{
+                position: fixed;
+                width: 100%;
+                margin-top: -8px;
+                margin-left: -8px;
+            }
+            #play:hover{
+                background-color:pink;
+            }
+            a{
+                text-decoration: none;
+                color: #fff;
+                padding: 6px;
+                width: 10.15%;
+                border: 1px white solid;
+                background-color:#be7bfd;
+                border-radius:8px;
+                font-size: 150%;
+                font-weight: bold;
+             }
+             a:hover{
+                background-color:pink;
+            }
+        </style>
+    </head>
+    <body id="abc">
+        <!-- <img src="https://storage.googleapis.com/crossing-cms-cwg-tw/article/202206/article-62b280f11a7a2.jpeg" alt=""> -->
+        <table id="tt1">
+            <caption id="rest">未背單字</caption>
+            <tbody id="ta1"></tbody>
+        </table>
+        <table id="tt2">
+            <caption id="alre">已背單字</caption>
+            <tbody id="ta2"></tbody>
+        </table>
+        <br><br>
+        <span class="select1" id="play">開始背單字！</span>
+        <span class="select1"><a href="selectVoca.html">返回選單</a></span>
+        <!-- <input type="button" id="play" value="開始背單字！"> -->
+    </body>
+</html>

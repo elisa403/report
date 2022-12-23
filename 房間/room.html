@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>room</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        /* 搖擺動畫 */
+        @keyframes swing{ 
+            15%{transform: translateX(5px);}
+            40%{transform: translateX(-5px);}
+            65%{transform: translateX(2px);}
+            85%{transform: translateX(-2px);}
+            100%{transform: translateX(0px);}
+        }
+        body{
+            background-image: url(room-1.JPG);
+            background-size: 100% ;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        .puzz{
+            margin-top: 12%;
+            margin-left:-1.5%;
+            width: 260px;
+            height: 270px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        .puzz:hover{
+            animation: swing 1s 1;
+        }
+        .computer{
+            margin-top: 23%;
+            margin-left:75%;
+            width: 350px;
+            height: 250px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        .computer:hover{
+            animation: swing 1s 1;
+        }
+        .words{
+            margin-top: 18%;
+            margin-left:72%;
+            width: 80px;
+            height: 80px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        .words:hover{
+            animation: swing 1s 1;
+        }
+        .cards{
+            margin-top: 25%;
+            margin-left:33%;
+            width: 160px;
+            height: 260px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        .cards:hover{
+            animation: swing 1s 1;
+        }
+        .post{
+            margin-top: 9%;
+            margin-left:45%;
+            width: 280px;
+            height: 290px;
+            position: absolute;
+        }
+        .score{
+            padding: 10px;
+            margin-left: 1%;
+            margin-top: 1.5%;
+            font-size: 25px;
+            position: absolute;
+            /* background-color: pink; */
+            /* border: 2px solid black; */
+            width: 150px;
+            /* font-family: 'cwTeXYen'; */
+            font-family: Noto Sans TC, Perpetua, serif;		
+        }
+        .b{
+            width: 280px;
+            height: 140px;
+            position: absolute;
+            margin-left: -50px;
+            z-index: -2;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        
+    </script>
+</head>
+
+<body>
+    <img class="b" src="board.PNG">
+    <div class="score">
+        累計積分 : <span class="a1" id="display1">1</span>
+    </div>
+    <img  class="post" src="post.PNG">
+    <!-- <a href="file:///Users/chianyih/Desktop/%E7%B6%B2%E7%A8%8B%E5%B0%88%E6%A1%88/%E6%88%BF%E9%96%93/drawcards.html"><img class="cards" id="drawcards" src="doll.PNG" ></a> -->
+    <img class="cards" id="drawcards" src="doll.PNG" >
+    <a href="../15_puzzle/15_puzzle.html"><img  class="puzz" id="15puzzle"src="puzz2.PNG"></a>
+    <a href="../vocabulary/selectVoca.html"><img class="words" id="learning" src="book2.PNG"></a>
+    <img class="computer" id="buyticket" src="computer.PNG">
+</body>
+
+</html>
