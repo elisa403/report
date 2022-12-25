@@ -11,7 +11,8 @@
 <html>
 
 <head>
-    <title>15-Puzzle</title>
+    <link rel="shortcut icon" href="../logo-3.jpeg" type="x-icon">
+    <title>拼拼圖</title>
     <meta charset="utf-8">
     <style>
         @import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
@@ -99,7 +100,7 @@
         var bias = "0"+JSON.parse(localStorage.getItem("bias"))["num"];
         var score_total = parseInt(localStorage.getItem("score_total"));
         var score_spend = parseInt(localStorage.getItem("score_spend"));    
-        console.log(bias)
+        //console.log(bias)
         
         $(document).ready(function(){
             score_spend -= 5;
@@ -290,16 +291,6 @@
             localStorage.setItem("score_total",score_total);
             display(list[ram]);
         }
-        function switchBGM(){
-            if(pm == 1){
-                document.getElementById("bmusic").pause()
-                pm = 0;
-            }
-            else{
-                document.getElementById("bmusic").play()
-                pm = 1
-            }
-        }
         function checkWin(){
             var ans = [['01','02','03','04'],['05','06','07','08'],['09','10','11','12'],['13','14','15','']]
             var count = 0;
@@ -368,16 +359,10 @@
     </table>
     <p>
         <br>
-        <span class="select1" id="laststepBtn" onclick="gotoLastStep()">好難:(我要花5積分作弊</span>
+        <span class="select1" id="laststepBtn" onclick="gotoLastStep()">好難...我要花5積分作弊</span>
         <span class="select1"><a href="../房間/room.html">返回房間</a></span>
     </p>
     <div id="msg"></div>
-    <!-- <audio id="amusic" preload="auto">
-        <source id="music" src="applause.mp3" type="audio/mp3">
-    </audio>
-    <audio id="bmusic" preload="auto" loop>
-        <source id="music" src="offlimits.mp3" type="audio/mp3">
-    </audio> -->
 </body>
 
 </html>
