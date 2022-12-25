@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="shortcut icon" href="../logo-3.jpeg" type="x-icon">
+    <meta charset="utf-8">
+    <title>搶票拼手速</title>
+    <style type="text/css">
+        body{
+            background-color: lightpink;
+
+        } 
+        .ticket {
+            width: 50%;
+            height: auto;
+            position: absolute;
+            margin-top: 7%;
+            margin-left: 25%;
+            z-index: -2;
+            
+        }
+
+		div, input {
+            font-family: Noto Sans TC, Perpetua, serif;
+			width: 300px;            
+        }
+		
+		div {
+            color: darkblue;
+            text-align: center;	
+			font-size: 24px;			
+        }
+
+		input {
+			font-size: 18px;
+			font-weight: bold;
+		}
+        img{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        #messages{
+            position: absolute;
+        }
+        .back{
+            margin-top:10px;
+            margin-left:10px;
+            padding: 7px;
+            border: 1px white solid;
+            background-color:#be7bfd;
+            border-radius:8px;
+            font-family: Noto Sans TC, Perpetua, serif;
+            font-size: 150%;
+            text-decoration:none;
+            position: absolute;
+        }
+        .back:hover{
+            background-color:pink;
+        }
+    </style>
+    <script>
+        //初始位置     0    1    2    3    4    5    6   7    8    9   10   11    12    13    14    15   16   17
+        let xarr=  ["90","90","90","90","90","90","50","60","20","1","35","80","-10","-10","-10","-10","-10","-10"];//初始位置
+        let yarr=  ["8","16","24","32","40","48","50","50","50","50","50","50","12","16","24","32","40","48"];
+        //初始大小     0      1    2     3     4      5    6    7     8      9    10    11    12    13    14     15    16   17
+        let width= ["300","300","300","250","400","400","250","250","250","250","250","250","350","350","350","350","350","350"];
+        let height=["200","200","200","180","300","300","350","350","350","350","350","350","220","220","220","220","220","220"];
+        let speedx=[];let speedy=[];
+        //            0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17
+        let movecnt=["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"];
+        var audio;
+        let point=0;
+        var score_total = parseInt(localStorage.getItem("score_total"));
+        var score_spend = parseInt(localStorage.getItem("score_spend"));
+         function move(){
+            for (let i=0; i<xarr.length; i++) {
+                let img=document.getElementById(i);
+                movecnt[i]++;
+                if(i<=5){//右邊
+                    xarr[i]-=speedx[i];
+                    yarr[i]-=speedx[i];
+                }else if(i>=6&&i<=11){//中間
+                    yarr[i]-=speedy[i];
+                }else if(i>=12){//左邊
+                    xarr[i]-=-speedx[i];
+                    console.log('x'+i,xarr[i]);
+                    yarr[i]-=speedx[i];
+                }
+                img.setAttribute("style","width:"+width[i]+"px;height:"+height[i]+"px;margin-left:"+xarr[i]+"%;margin-top:"+yarr[i]+"%;z-index:"+parseInt(i+2)+";"); 
+                if((yarr[i]<=0)){//超出上邊界
+                    // console.log('cnt',movecnt[i]);
+                    // console.log('i',movecnt[i]);
+                    if(i<=5){//右邊
+                        xarr[i]+=speedx[i]*movecnt[i]*1.5;
+                        yarr[i]+=speedx[i]*movecnt[i]*1.5;
+                    }else if(i>=6&&i<=11){//中間
+                        yarr[i]+=speedy[i]*movecnt[i];
+                    }else{//左邊
+                        xarr[i]-=speedx[i]*movecnt[i];
+                        yarr[i]+=speedy[i]*movecnt[i];
+                    }
+                    movecnt[i]=0;
+                    img.setAttribute("style","width:"+width[i]+"px;height:"+height[i]+"px;margin-left:"+xarr[i]+"%;margin-top:"+yarr[i]+"%;z-index:"+parseInt(i+2)+";");
+                    setspeed(i);
+                    console.log('movex',xarr[i]);
+                    console.log('movey',yarr[i]);
+                }
+            }
+         }
+
+         function setspeed(i){  //隨機選擇每手的速度
+            speedx[i]=Math.floor(5+Math.random()*9)*0.07;
+            speedy[i]=Math.floor(5+Math.random()*9)*0.07;
+         }
+
+         function click(i){
+            point++;
+            // console.log('point',point);
+            // console.log('cnt',movecnt[i]);
+            // console.log('i',i);
+            let img=document.getElementById(i);
+            if(i<=5){//右邊
+                xarr[i]+=speedx[i]*movecnt[i];
+                yarr[i]+=speedy[i]*movecnt[i];
+            }else if(i>=6&&i<=11){//中間
+                yarr[i]+=speedy[i]*movecnt[i];
+            }else{//左邊
+                xarr[i]-=speedx[i]*movecnt[i];
+                yarr[i]+=speedy[i]*movecnt[i];
+            }
+            movecnt[i]=0;
+            // console.log('clickx',xarr[i]);
+            // console.log('clicky',yarr[i]);
+            img.setAttribute("style","width:"+width[i]+"px;height:"+height[i]+"px;margin-left:"+xarr[i]+"%;margin-top:"+yarr[i]+"%;z-index:"+parseInt(i+2)+";");
+            setspeed(i);
+        }
+        function checkwin(){
+            if(point>=50){
+                //let text=document.getElementById("messages");
+                score_total+=10;
+                score_spend+=10;
+                localStorage.setItem("score_total",score_total);//設回分數
+                let a= window.confirm("恭喜你打敗了眾多競爭對手，成功搶到演唱會的門票！");
+                if(a){
+                    window.location.href="../房間/room.html";
+                }
+            }else{
+                let a= window.confirm("你的手速還不夠快，想搶到門票還差得遠呢！");
+                if(a){
+                    window.location.href="../房間/room.html";
+                }
+            }
+        }
+        function start(){ 
+            for(let i=0;i<xarr.length;i++){
+                document.getElementById(i).addEventListener("click",function(){click(i);},false);
+                setspeed(i);//設定初始速度
+            }
+            score_spend-=5;
+        }
+        window.addEventListener("load",start,false);
+        window.addEventListener("load", move, false);
+       window.setInterval("move()",100);//調整手的速度
+        setTimeout("checkwin()",30000);//遊戲時間
+    </script>
+</head>
+<body>
+    </audio>
+    <span class="back"><a href="../房間/room.html"style="text-decoration:none;color:white">返回房間</a></span>
+    <img class="ticket" src="ticket.PNG">
+    <img src="right1.PNG" id="0"  >
+    <img src="right2.PNG" id="1" >
+    <img src="right3.PNG" id="2" >
+    <img src="right1.PNG" id="3" >
+    <img src="right2.PNG" id="4" >
+    <img src="right3.PNG" id="5" >
+
+    <img src="middle2.PNG" id="6" >
+    <img src="middle1.PNG" id="7" >
+    <img src="middle1.PNG" id="8" >
+    <img src="middle3.PNG" id="9" >
+    <img src="middle3.PNG" id="10" >
+    <img src="middle2.PNG" id="11" >
+
+    <img src="left1.PNG" id="12" >
+    <img src="left2.PNG" id="13" >
+    <img src="left3.PNG" id="14" >
+    <img src="left1.PNG" id="15" >
+    <img src="left2.PNG" id="16" >
+    <img src="left3.PNG" id="17" >
+
+
+    <div id = "messages"></div>
+
+
+</body>
+
+</html>
