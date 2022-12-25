@@ -160,6 +160,7 @@
                 setspeed(i);//設定初始速度
             }
             score_spend-=5;
+            localStorage.setItem("score_spend",score_spend);//設回分數
         }
         window.addEventListener("load",start,false);
         window.addEventListener("load", move, false);
