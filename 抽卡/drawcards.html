@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="shortcut icon" href="../logo-3.jpeg" type="x-icon">
+    <meta charset="utf-8">
+    <title>迷妹買專輯最期待的抽小卡</title>
+    <style type="text/css">
+        body{
+            background-color: lightpink;
+        }
+        img {
+            width: 280px;
+            height: 400px;
+        }
+
+		div, input {
+            font-family: Noto Sans TC, Perpetua, serif;
+			width: 300px;            
+        }
+		
+		div {
+            color: darkblue;
+            text-align: center;	
+			font-size: 24px;			
+        }
+
+		input {
+			font-size: 18px;
+			font-weight: bold;
+		}
+        .cen{
+            margin-left: 480px;
+            margin-top: 100px;
+        }
+        #button{
+            width: 200px;
+            height: 120px;
+        }
+        #card{
+            margin-top:-10%;
+        }
+        #messages{
+            width: 100%;
+        }
+        .back{
+            margin-top:-80px;
+            margin-left:10px;
+            padding: 7px;
+            border: 1px white solid;
+            background-color:#be7bfd;
+            border-radius:8px;
+            font-family: Noto Sans TC, Perpetua, serif;
+            font-size: 150%;
+            text-decoration:none;
+            position: absolute;
+        }
+        .back:hover{
+            background-color:pink;
+        }
+    </style>
+    <script>
+        let namearr=["rm","suga","v","jungkook","jhope","jimin","jin"];
+        var pic=["b0","b1","b2","b3","b4","b5","b6","b7"];
+        var img;//在外面宣告
+        var audio;
+        var score_total = parseInt(localStorage.getItem("score_total"));
+        var score_spend = parseInt(localStorage.getItem("score_spend"));
+        function startchoose(){
+            messages.innerHTML = "";
+            window.setTimeout("choose()",1500);
+        }
+        function choose(){
+            let bias;
+            for(var i=0;i<localStorage.length;i++){
+                if (localStorage.key(i).startsWith("bias")){
+                        bias = localStorage.key(i);
+                    }
+            }
+            let biasnum=JSON.parse(localStorage.getItem(bias));
+            var ran = Math.floor(Math.random()*7);//0-6
+            //console.log('ran',ran);
+            img.setAttribute("src",pic[ran]+".png");
+            console.log('img',img);
+            if(ran==biasnum.num){
+                messages.innerHTML="您抽到"+namearr[ran]+"<br>恭喜你抽到本命的小卡<br>獲得10積分！";
+                score_total+=10;//抽到本命增加五積分
+                score_spend+=10;
+                localStorage.setItem("score_total",score_total);//設回分數
+            }else{
+                messages.innerHTML="您抽到"+namearr[ran]+"的小卡!";
+            }
+        } 
+        function start(){  
+            
+            const button1 = document.getElementById("button");
+            img = document.getElementById("card");
+            audio = document.getElementById("picking");
+            button1.addEventListener("click", startchoose, false);
+            //picking.addEventListener("ended", choose, false);//也可寫audio.add...
+            score_spend-=5;
+        }
+        window.addEventListener("load", start, false);
+    </script>
+</head>
+<body>
+    <span class="back"><a href="../房間/room.html"style="text-decoration:none;color:white">返回房間</a></span>
+    <div class="cen">
+        <img id = "card" src = "cover.jpg">
+        <img src="button.PNG" id="button">
+        </form>
+        <div id = "messages"></div>
+    </div>
+
+</body>
+
+</html>
