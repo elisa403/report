@@ -3,8 +3,10 @@
 <html>
 
 <head>
-    <title>room</title>
+    <link rel="shortcut icon" href="../logo-3.jpeg" type="x-icon">
+    <title>我的房間</title>
     <meta charset="utf-8">
+    
     <style type="text/css">
         @import url(http://fonts.googleapis.com/earlyaccess/cwtexyen.css);
         /* 搖擺動畫 */
@@ -22,12 +24,14 @@
             overflow: hidden;
         }
         .puzz{
-            margin-top: 12%;
-            margin-left:-1.5%;
-            width: 260px;
-            height: 270px;
-            transition: 0.3s;
+            margin-top: 10%;
+            margin-left:-5%;
+            width: 30%;
+            height: 45%;
             position: absolute;
+        }
+        .puzz::before{
+            content: attr(title);
         }
         .puzz:hover{
             animation: swing 1s 1;
@@ -40,6 +44,9 @@
             transition: 0.3s;
             position: absolute;
         }
+        .computer::before{
+            content: attr(title);
+        }
         .computer:hover{
             animation: swing 1s 1;
         }
@@ -51,6 +58,9 @@
             transition: 0.3s;
             position: absolute;
         }
+        .words::before{
+            content: attr(title);
+        }
         .words:hover{
             animation: swing 1s 1;
         }
@@ -61,6 +71,9 @@
             height: 260px;
             transition: 0.3s;
             position: absolute;
+        }
+        .cards::before{
+            content: attr(title);
         }
         .cards:hover{
             animation: swing 1s 1;
@@ -78,38 +91,73 @@
             margin-top: 1.5%;
             font-size: 25px;
             position: absolute;
-            /* background-color: pink; */
-            /* border: 2px solid black; */
-            width: 150px;
-            /* font-family: 'cwTeXYen'; */
+            width: 300px;
             font-family: Noto Sans TC, Perpetua, serif;		
         }
         .b{
-            width: 280px;
+            width: 350px;
             height: 140px;
             position: absolute;
-            margin-left: -50px;
+            margin-left: -70px;
             z-index: -2;
         }
-
+        #gif{
+            margin-top: -30%;
+            margin-left: -10%;
+            width: 120%;
+            /* height: auto; */
+        }
+      
     </style>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
-        
+        $(document).ready(function(){
+            $("#gif").hide();
+
+        });
+        var score_total = parseInt(localStorage.getItem("score_total"));
+        var score_spend = parseInt(localStorage.getItem("score_spend"));
+        // let total_display=document.getElementById("score_total2");
+        // let spend_display=document.getElementById("score_spend2");
+        function start(){
+             score_total = parseInt(localStorage.getItem("score_total"));
+             score_spend = parseInt(localStorage.getItem("score_spend"));
+             document.getElementById("score_total2").innerHTML=score_total;
+             document.getElementById("score_spend2").innerHTML=score_spend;
+             if(score_total>=240){//顯示恭喜
+                // location.reload();
+                // location.reload();
+                $("#gif").show();
+                $("#drawcards").hide();
+                $("#puzzle").hide();
+                $("#learning").hide();
+                $("#buyticiet").hide();
+                $(".post").hide();
+                $(".score").hide();
+             }
+        }
+        window.addEventListener("load",start,false);
     </script>
 </head>
 
 <body>
+   
     <img class="b" src="board.PNG">
     <div class="score">
-        累計積分 : <span class="a1" id="display1">1</span>
+        累計積分 : <span id="score_total2"></span>
     </div>
+    <img class="b" src="board.PNG" style="margin-top: 5%;">
+    <span class="score" style="margin-top: 6.5%;">
+        可花費積分 : <span id="score_spend2"></span>
+    </span>
     <img  class="post" src="post.PNG">
-    <!-- <a href="file:///Users/chianyih/Desktop/%E7%B6%B2%E7%A8%8B%E5%B0%88%E6%A1%88/%E6%88%BF%E9%96%93/drawcards.html"><img class="cards" id="drawcards" src="doll.PNG" ></a> -->
-    <img class="cards" id="drawcards" src="doll.PNG" >
-    <a href="../15_puzzle/15_puzzle.html"><img  class="puzz" id="15puzzle"src="puzz2.PNG"></a>
-    <a href="../vocabulary/selectVoca.html"><img class="words" id="learning" src="book2.PNG"></a>
-    <img class="computer" id="buyticket" src="computer.PNG">
+    <a href="../抽卡/drawcards.html"title="抽卡"><img style="display: block;"class="cards" id="drawcards" src="doll.PNG" ></a>
+    <a href="../15_puzzle/15_puzzle.html"title="拼圖遊戲"><img style="display: block;" class="puzz"id="puzzle"src="puzz2.PNG"></a>
+    <a href="../vocabulary/selectVoca.html"title="單字練習"><img style="display: block;"class="words" id="learning" src="book2.PNG"></a>
+    <a href="../搶票遊戲/buyticket.html"title="搶票遊戲"><img style="display: block;"class="computer" id="buyticket" src="computer.PNG"></a>
+    <!-- <img id="gif" src="celebrate.gif" style="display: none;z-index: 10000;"> -->
+    <img id="gif" src="celebrate.gif">
+
 </body>
 
 </html>
