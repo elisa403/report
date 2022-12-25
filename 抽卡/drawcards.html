@@ -88,6 +88,7 @@
                 score_total+=10;//抽到本命增加五積分
                 score_spend+=10;
                 localStorage.setItem("score_total",score_total);//設回分數
+                localStorage.setItem("score_spend",score_spend);//設回分數
             }else{
                 messages.innerHTML="您抽到"+namearr[ran]+"的小卡!";
             }
@@ -100,6 +101,7 @@
             button1.addEventListener("click", startchoose, false);
             //picking.addEventListener("ended", choose, false);//也可寫audio.add...
             score_spend-=5;
+            localStorage.setItem("score_spend",score_spend);//設回分數
         }
         window.addEventListener("load", start, false);
     </script>
