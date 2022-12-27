@@ -64,12 +64,13 @@ function display() {
 }
 
 function play() {
-    var newNode = document.createElement("img");
-    //https://static.rti.org.tw/assets/thumbnails/2019/03/18/4051762897a648062eeefe267ad8f780.jpg
-    newNode.setAttribute("src","cover.jpeg");
-    var parentDiv = document.getElementById("abc").parentNode;
-    var sp2 = document.getElementById("abc");
-    parentDiv.insertBefore(newNode, sp2);
+    // var newNode = document.createElement("img");
+    // //https://static.rti.org.tw/assets/thumbnails/2019/03/18/4051762897a648062eeefe267ad8f780.jpg
+    // newNode.setAttribute("src","cover.jpeg");
+    // var parentDiv = document.getElementById("abc").parentNode;
+    // var sp2 = document.getElementById("abc");
+    // parentDiv.insertBefore(newNode, sp2);
+    $("img").show();
     setTimeout(()=>{
         localStorage.setItem(localStorage.getItem("now"),perstatus)
         if (canplay.length == 0) {
