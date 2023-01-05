@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登入</title>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            text-align: center;
+            background-image: url(cloud.jpg);
+            background-size: 130%;
+            color: #be7bfd;
+            font-family: monospace;
+        }
+        #dialogue {
+            height: 50px;
+            overflow: auto;
+            padding: 5px;
+            font-size: 20px;
+            text-align: center;
+        }
+        #aa{
+            margin-top: 10%;
+            margin-left: 40%;
+            height: 330px;
+            font-weight: bolder;
+            border: 2px white solid;
+            background-color:white;
+            border-radius:8px;
+            width: 20%;
+        }
+        .back{
+            padding: 8px;
+            border: 2px white solid;
+            background-color:#be7bfd;
+            color: white;
+            border-radius:8px;
+            font-size: 150%;
+         }
+        a{
+            text-decoration: none;
+            color: white;
+            font-weight: bolder;
+         }
+        .back:hover{
+            background-color:pink;
+        }
+        .inout{
+            font-size: 30px;
+        }
+        input{
+            border: 2px #be7bfd solid;;
+        }
+    </style>
+</head>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#chat").click(function () {
+                submitDialogue();
+            });
+        });
+
+        function submitDialogue() {
+            let position = $("#dialogue").scrollTop();
+            submitAndRefreshData();
+            $("#dialogue").scrollTop(position);
+        }
+
+        function submitAndRefreshData() {
+            $.get("/chat", { user: $("#user").val(), say: $("#say").val() }, function (res) {
+                let content = "";
+                let count = 0;
+                console.log(res)
+                for (let chatObj of res) {
+                    count += 1;
+                    console.log(count)
+                    content += `登入成功`;
+                    localStorage.setItem("節日",chatObj.jr)
+                    localStorage.setItem("人物",chatObj.rw)
+                    localStorage.setItem("地點",chatObj.dd)
+                    localStorage.setItem("方位",chatObj.fw)
+                    localStorage.setItem("時間",chatObj.sj)
+                    localStorage.setItem("狀態",chatObj.zt)
+                    localStorage.setItem("動作",chatObj.dz)
+                    localStorage.setItem("副詞連接詞",chatObj.fyl)
+                    localStorage.setItem("物品",chatObj.wp)
+                    localStorage.setItem("score_total",chatObj.st);
+                    localStorage.setItem("score_spend",chatObj.ss);
+                    
+                }
+                if(count == 0) content +=`<span>帳號或密碼錯誤</span>`
+                $("#dialogue").html(content);
+            });
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <div id="aa">
+        <br><br><br>
+        <span class="inout">登入</span><br><br>
+        <label>帳號: <input type=" text" id="user" size="20"></label><br><br>
+        <label>密碼: <input type="text" id="say" size="20"></label><br><br><br>
+        <span id="chat"  class="back">登入</span><br><br><br>
+        <div id="dialogue"></div>
+        <!-- <input type="button" id="chat" value="登入"> -->
+    </div>
+</body>
+
+</html>
