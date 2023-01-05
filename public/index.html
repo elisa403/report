@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>註冊</title>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            text-align: center;
+            background-image: url(cloud.jpg);
+            background-size: 130%;
+            color: #be7bfd;
+            font-family: monospace;
+        }
+        #dialogue {
+            width: 30%;
+            margin-left: 35%;
+            height: 50px;
+            overflow: auto;
+            padding: 5px;
+            font-size: 20px;
+        }
+        #aa{
+            margin-top: 10%;
+            margin-left: 40%;
+            height: 330px;
+            font-weight: bolder;
+            border: 2px white solid;
+            background-color:white;
+            border-radius:8px;
+            width: 20%;
+        }
+        .back{
+            padding: 8px;
+            border: 2px white solid;
+            background-color:#be7bfd;
+            color: white;
+            border-radius:8px;
+            font-size: 150%;
+         }
+        a{
+            text-decoration: none;
+            color: white;
+            font-weight: bolder;
+         }
+        .back:hover{
+            background-color:pink;
+        }
+        .inout{
+            font-size: 30px;
+        }
+        input{
+            border: 2px #be7bfd solid;;
+        }
+    </style>
+</head>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#chat").click(function () {
+                submitDialogue();
+            });
+            
+        });
+
+        function submitDialogue() {
+            let position = $("#dialogue").scrollTop();
+            submitAndRefreshData();
+            $("#dialogue").scrollTop(position);
+            saveChatRecords()
+            let content = "註冊成功";
+            $("#dialogue").html(content);
+        }
+        
+        function submitAndRefreshData() {
+            $.get("/chat", { user: $("#user").val(), say: $("#say").val() }, function (res) {
+                for (let chatObj of res) {
+                    content += `<div class='user'>${chatObj.user}</div><div class='verb'>說</div> ${chatObj.say}<div class='qq'>${chatObj.jr}</div>`;
+                }
+            });
+        }
+
+        function clearAndRefreshData() {
+            $.get("/chat/clear", function (res) {
+                $("#dialogue").empty();
+            });
+        }
+
+        function saveChatRecords() {
+            $.get("/chat/save", function (res) {
+                alert("Saving data to Atlas!");
+                console.log(JSON.stringify(res));
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="aa">
+        <br><br><br>
+        <span class="inout">註冊</span><br><br>
+        <label>帳號: <input type=" text" id="user" size="20"></label><br><br>
+        <label>密碼: <input type="text" id="say" size="20"></label><br><br><br>
+        <span id="chat"  class="back">註冊</span><br><br><br>
+        <div id="dialogue"></div>
+        <!-- <input type="button" id="chat" value="註冊"> -->
+    </div>
+</body>
+
+</html>
